@@ -23,11 +23,6 @@ export default function MainPage() {
     }
   }
 
-  const handleLoginSuccess = () => {
-    setIsLoginModalOpen(false)
-    navigate("/dashboard")
-  }
-
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header onLoginClick={() => setIsLoginModalOpen(true)} isLoggedIn={isLoggedIn} />
@@ -35,7 +30,7 @@ export default function MainPage() {
         <HeroSection onGetStarted={handleGetStarted} isLoggedIn={isLoggedIn} />
       </main>
       <Footer />
-      <LoginModal open={isLoginModalOpen} onOpenChange={setIsLoginModalOpen} onLoginSuccess={handleLoginSuccess} />
+      <LoginModal open={isLoginModalOpen} onOpenChange={setIsLoginModalOpen} />
     </div>
   )
 }

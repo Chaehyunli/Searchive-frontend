@@ -1,22 +1,17 @@
 "use client"
 
-import { useAuthStore } from "../store/authStore"
+import { authAPI } from "../api"
 import { Button } from "./common/Button"
 
 interface LoginModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  onLoginSuccess?: () => void
 }
 
-export default function LoginModal({ open, onOpenChange, onLoginSuccess }: LoginModalProps) {
-  const { setUser } = useAuthStore()
-
+export default function LoginModal({ open, onOpenChange }: LoginModalProps) {
   const handleKakaoLogin = () => {
-    // TODO: 카카오 OAuth 로그인 구현
-    // 임시로 로그인 성공 처리
-    setUser({ email: "kakao@user.com", name: "카카오 사용자" })
-    onLoginSuccess?.()
+    // 카카오 로그인 페이지로 리디렉션
+    authAPI.kakaoLogin()
   }
 
   if (!open) return null

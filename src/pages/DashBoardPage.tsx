@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuthStore } from "../store/authStore"
 import { Button } from "../components/common/Button"
@@ -8,8 +9,13 @@ import FeatureCards from "../components/FeatureCards"
 import DocumentList from "../components/DocumentList"
 
 export default function DashboardPage() {
-  const { isLoggedIn, user, logout } = useAuthStore()
+  const { isLoggedIn, user, logout, checkAuth } = useAuthStore()
   const navigate = useNavigate()
+
+  // 페이지 로드 시 인증 상태 확인
+  useEffect(() => {
+    checkAuth()
+  }, [checkAuth])
 
   // 로그인하지 않은 경우 메인 페이지로 리다이렉트
   if (!isLoggedIn) {
@@ -17,8 +23,8 @@ export default function DashboardPage() {
     return null
   }
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await logout()
     navigate("/")
   }
 
@@ -37,7 +43,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-500">{user?.email}</span>
+            <span className="text-sm text-gray-500">{user?.nickname}</span>
             <Button size="sm" variant="ghost" onClick={handleLogout} className="text-gray-900 hover:bg-gray-50/50 h-9">
               로그아웃
             </Button>
