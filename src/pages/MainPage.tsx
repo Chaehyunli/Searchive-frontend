@@ -23,11 +23,21 @@ export default function MainPage() {
     }
   }
 
+  const handleFeatureClick = () => {
+    if (isLoggedIn) {
+      // 로그인 상태면 대시보드로 이동
+      navigate("/dashboard")
+    } else {
+      // 비로그인 상태면 로그인 모달 열기
+      setIsLoginModalOpen(true)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <Header onLoginClick={() => setIsLoginModalOpen(true)} isLoggedIn={isLoggedIn} />
       <main className="flex-grow">
-        <HeroSection onGetStarted={handleGetStarted} isLoggedIn={isLoggedIn} />
+        <HeroSection onGetStarted={handleGetStarted} isLoggedIn={isLoggedIn} onFeatureClick={handleFeatureClick} />
       </main>
       <Footer />
       <LoginModal open={isLoginModalOpen} onOpenChange={setIsLoginModalOpen} />

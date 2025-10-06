@@ -1,14 +1,19 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuthStore } from "../store/authStore"
 
 export default function KakaoCallback() {
   const navigate = useNavigate()
   const { checkAuth } = useAuthStore()
+  const hasRun = useRef(false)
 
   useEffect(() => {
+    // 이미 실행되었으면 중단
+    if (hasRun.current) return
+    hasRun.current = true
+
     const handleCallback = async () => {
       try {
         // 백엔드에서 카카오 콜백 처리 후 세션이 생성됨
@@ -25,7 +30,8 @@ export default function KakaoCallback() {
     }
 
     handleCallback()
-  }, [checkAuth, navigate])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className="min-h-screen bg-white flex items-center justify-center">
