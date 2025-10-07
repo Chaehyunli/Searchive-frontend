@@ -23,11 +23,11 @@ export default function LoginModal({ open, onOpenChange }: LoginModalProps) {
 
       {/* 모달 콘텐츠 */}
       <div className="relative w-full max-w-md bg-white rounded-2xl shadow-2xl">
-        <div className="px-8 py-12">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-4">
+        <div style={{ padding: '1rem' }}>
+          <h2 className="text-2xl font-bold text-center text-gray-900" style={{ marginBottom: '0.5rem' }}>
             Searchive에 오신 것을 환영합니다
           </h2>
-          <p className="text-center text-gray-500 mb-12">AI 기반 문서 워크스페이스에 접속하세요</p>
+          <p className="text-center text-gray-500" style={{ marginBottom: '0.5rem' }}>AI 기반 문서 워크스페이스에 접속하세요</p>
 
           <Button
             type="button"
@@ -41,7 +41,7 @@ export default function LoginModal({ open, onOpenChange }: LoginModalProps) {
             카카오로 시작하기
           </Button>
 
-          <p className="text-center text-xs text-gray-400 mt-8">
+          <p className="text-center text-xs text-gray-400" style={{ marginTop: '1rem' }}>
             로그인하면 서비스 이용약관 및 개인정보처리방침에 동의하게 됩니다
           </p>
         </div>
