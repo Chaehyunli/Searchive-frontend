@@ -35,7 +35,7 @@ export default function MainPage() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header onLoginClick={() => setIsLoginModalOpen(true)} isLoggedIn={isLoggedIn} />
+      <Header onLoginClick={() => setIsLoginModalOpen(true)} />
       <main className="flex-grow">
         <HeroSection onGetStarted={handleGetStarted} isLoggedIn={isLoggedIn} onFeatureClick={handleFeatureClick} />
       </main>
