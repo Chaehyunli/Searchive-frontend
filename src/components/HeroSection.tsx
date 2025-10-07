@@ -48,14 +48,18 @@ export default function HeroSection({ onGetStarted, isLoggedIn, onFeatureClick }
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full sm:w-auto max-w-md sm:max-w-none mb-16 sm:mb-20">
             <Button
               onClick={onGetStarted}
-              className="bg-blue-400 hover:bg-blue-500 text-white h-12 sm:h-11 px-10 sm:px-12 py-3 text-sm sm:text-base font-medium shadow-lg shadow-blue-400/20 w-full sm:w-auto"
+              size="lg"
+              style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
+              className="bg-blue-400 hover:bg-blue-500 text-white text-sm sm:text-base font-medium shadow-lg shadow-blue-400/20 w-full sm:w-auto"
             >
               <Sparkles className="w-4 h-4 mr-2" />
               {isLoggedIn ? "대시보드로 이동" : "지금 시작하기"}
             </Button>
             <Button
               variant="outline"
-              className="border-gray-200 hover:bg-gray-50/50 h-12 sm:h-11 px-10 sm:px-12 py-3 text-sm sm:text-base font-medium bg-white w-full sm:w-auto"
+              size="lg"
+              style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
+              className="border-gray-200 hover:bg-gray-50/50 text-sm sm:text-base font-medium bg-white w-full sm:w-auto"
             >
               <MessageSquare className="w-4 h-4 mr-2" />
               작동 방식 보기

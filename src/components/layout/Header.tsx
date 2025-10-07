@@ -47,13 +47,15 @@ export default function Header({ onLoginClick }: HeaderProps) {
               <Button
                 variant="ghost"
                 onClick={onLoginClick}
-                className="text-gray-900 hover:bg-gray-50/50 h-9 sm:h-10 px-6 sm:px-8 py-2 text-sm"
+                style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
+                className="text-gray-900 hover:bg-gray-50/50 text-sm"
               >
                 로그인
               </Button>
               <Button
                 onClick={onLoginClick}
-                className="bg-blue-400 hover:bg-blue-500 text-white h-9 sm:h-10 px-7 sm:px-9 py-2 text-sm font-medium"
+                style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
+                className="bg-blue-400 hover:bg-blue-500 text-white text-sm font-medium"
               >
                 시작하기
               </Button>
@@ -64,7 +66,8 @@ export default function Header({ onLoginClick }: HeaderProps) {
               <Button
                 variant="ghost"
                 onClick={handleLogout}
-                className="text-gray-900 hover:bg-gray-50/50 h-9 sm:h-10 px-5 sm:px-6 py-2 text-sm"
+                style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
+                className="text-gray-900 hover:bg-gray-50/50 text-sm"
               >
                 로그아웃
               </Button>

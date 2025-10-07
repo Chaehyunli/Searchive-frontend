@@ -31,7 +31,8 @@ export default function LoginModal({ open, onOpenChange }: LoginModalProps) {
 
           <Button
             type="button"
-            className="w-full bg-[#FEE500] hover:bg-[#FDD835] text-gray-900 h-8 font-semibold shadow-md flex items-center justify-center gap-2"
+            size="lg"
+            className="w-full flex items-center justify-center gap-2"
             onClick={handleKakaoLogin}
           >
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">

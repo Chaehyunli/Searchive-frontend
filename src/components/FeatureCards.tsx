@@ -8,7 +8,8 @@ export default function FeatureCards({ onCardClick }: FeatureCardsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
       <div
-        className="p-6 rounded-2xl bg-white border border-gray-200/60 hover:border-blue-400/40 hover:shadow-lg transition-all cursor-pointer"
+        style={{ padding: '1rem' }}
+        className="rounded-2xl bg-white border border-gray-200/60 hover:border-blue-400/40 hover:shadow-lg transition-all cursor-pointer"
         onClick={onCardClick}
       >
         <div className="w-12 h-12 rounded-xl bg-blue-400/10 flex items-center justify-center mb-4">
@@ -21,7 +22,8 @@ export default function FeatureCards({ onCardClick }: FeatureCardsProps) {
       </div>
 
       <div
-        className="p-6 rounded-2xl bg-white border border-gray-200/60 hover:border-blue-300/40 hover:shadow-lg transition-all cursor-pointer"
+        style={{ padding: '1rem' }}
+        className="rounded-2xl bg-white border border-gray-200/60 hover:border-blue-400/40 hover:shadow-lg transition-all cursor-pointer"
         onClick={onCardClick}
       >
         <div className="w-12 h-12 rounded-xl bg-blue-300/10 flex items-center justify-center mb-4">
@@ -34,7 +36,8 @@ export default function FeatureCards({ onCardClick }: FeatureCardsProps) {
       </div>
 
       <div
-        className="p-6 rounded-2xl bg-white border border-gray-200/60 hover:border-blue-400/40 hover:shadow-lg transition-all cursor-pointer"
+        style={{ padding: '1rem' }}
+        className="rounded-2xl bg-white border border-gray-200/60 hover:border-blue-400/40 hover:shadow-lg transition-all cursor-pointer"
         onClick={onCardClick}
       >
         <div className="w-12 h-12 rounded-xl bg-blue-400/10 flex items-center justify-center mb-4">
