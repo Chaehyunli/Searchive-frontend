@@ -20,11 +20,12 @@
 
 ## 🛠️ 기술 스택 (Tech Stack)
 
--   **Core**: React.js, TypeScript, Vite
+-   **Core**: React 19, TypeScript, Vite (with Rolldown)
 -   **API Communication**: Axios
--   **State Management**: Zustand (또는 Redux, Recoil)
--   **Routing**: React Router
--   **Styling**: Styled-components (또는 Tailwind CSS)
+-   **State Management**: Zustand
+-   **Routing**: React Router v7
+-   **Styling**: Tailwind CSS v4
+-   **UI Components**: Lucide React (아이콘), Class Variance Authority (컴포넌트 variants)
 
 ---
 
@@ -50,8 +51,12 @@
 
 3.  **환경 변수 설정:**
     프로젝트 루트에 `.env` 파일을 생성하고, 백엔드 API 서버의 주소를 입력합니다.
-    ```
-    VITE_API_URL=http://localhost:8000
+    ```env
+    # API Configuration
+    VITE_API_BASE_URL=http://localhost:3000/api
+
+    # Environment
+    VITE_ENV=development
     ```
 
 4.  **개발 서버 실행:**
@@ -69,33 +74,45 @@ Searchive-frontend/
 ├── public/              # 정적 파일 (favicon, images 등)
 ├── src/
 │   ├── api/             # 🌐 API 요청 함수 및 Axios 인스턴스 관리
-│   │   └── index.ts
+│   │   ├── auth.api.ts  # 인증 관련 API 함수
+│   │   ├── client.ts    # Axios 인스턴스 설정
+│   │   └── index.ts     # API 함수 Export
 │   ├── assets/          # 🖼️ 이미지, 폰트 등 정적 에셋
 │   ├── components/      # 🧱 재사용 가능한 UI 컴포넌트
 │   │   ├── common/      # 버튼, 인풋 등 범용 컴포넌트
 │   │   │   ├── Button.tsx
 │   │   │   └── Input.tsx
-│   │   └── layout/      # 헤더, 푸터 등 레이아웃 컴포넌트
-│   │       ├── Header.tsx
-│   │       └── Footer.tsx
-│   ├── hooks/           # 🎣 커스텀 훅 (예: useAuth, useDocuments)
-│   │   ├── useAuth.ts
-│   │   └── useDocuments.ts
+│   │   ├── layout/      # 헤더, 푸터 등 레이아웃 컴포넌트
+│   │   │   ├── Header.tsx
+│   │   │   └── Footer.tsx
+│   │   ├── DocumentList.tsx    # 문서 목록 컴포넌트
+│   │   ├── FeatureCards.tsx    # 기능 소개 카드
+│   │   ├── HeroSection.tsx     # 메인 히어로 섹션
+│   │   └── LoginModal.tsx      # 로그인 모달
+│   ├── hooks/           # 🎣 커스텀 훅
+│   │   ├── useAuth.ts          # 인증 상태 관리
+│   │   └── useDocuments.ts     # 문서 데이터 관리
+│   ├── lib/             # 🔧 유틸리티 함수
+│   │   └── utils.ts            # 공통 유틸 함수 (cn 등)
 │   ├── pages/           # 📄 페이지 단위의 컴포넌트
-│   │   ├── LoginPage.tsx
-│   │   └── MainPage.tsx
+│   │   ├── DashBoardPage.tsx   # 대시보드 페이지
+│   │   ├── KakaoCallback.tsx   # 카카오 로그인 콜백
+│   │   └── MainPage.tsx        # 메인 페이지
 │   ├── store/           # 🏪 전역 상태 관리 (Zustand)
-│   │   └── authStore.ts
+│   │   └── authStore.ts        # 인증 상태 스토어
 │   ├── styles/          # 🎨 전역 CSS, 테마 관련 파일
-│   │   └── global.css
 │   ├── types/           # 🏷️ TypeScript 타입 정의
 │   │   └── index.ts
+│   ├── App.css          # 애플리케이션 스타일
 │   ├── App.tsx          # 🏠 애플리케이션 최상위 진입점 (라우팅 설정)
+│   ├── index.css        # 전역 스타일 (Tailwind 포함)
 │   └── main.tsx         # 애플리케이션 엔트리 포인트
 ├── .gitignore
 ├── eslint.config.js     # ESLint 설정
 ├── index.html           # HTML 템플릿
 ├── package.json         # 프로젝트 의존성 및 스크립트
+├── postcss.config.js    # PostCSS 설정
+├── tailwind.config.ts   # Tailwind CSS 설정
 ├── tsconfig.json        # TypeScript 설정
 ├── vite.config.ts       # Vite 설정
 └── README.md
@@ -120,13 +137,21 @@ Searchive-frontend/
 
 #### `hooks/` 🎣
 - **역할**: 여러 컴포넌트에서 공통으로 사용될 로직을 분리하는 커스텀 훅을 만듭니다.
-- **예시**:
-  - `useAuth.ts`: 사용자 인증 상태 관리
-  - `useDocuments.ts`: 문서 목록 데이터 관리
+- **내용**:
+  - `useAuth.ts`: 사용자 인증 상태 및 로그인/로그아웃 로직 관리
+  - `useDocuments.ts`: 문서 목록 조회 및 관리 로직
+
+#### `lib/` 🔧
+- **역할**: 프로젝트 전반에서 사용되는 유틸리티 함수들을 관리합니다.
+- **내용**:
+  - `utils.ts`: Tailwind CSS 클래스 병합을 위한 `cn()` 함수 등 공통 유틸리티
 
 #### `pages/` 📄
 - **역할**: 실제 사용자가 보게 될 페이지 단위의 큰 컴포넌트들을 만듭니다.
-- **내용**: `LoginPage.tsx`, `MainPage.tsx` 등이 여기에 해당하며, 여러 `components`들을 조합하여 하나의 페이지를 완성합니다.
+- **내용**:
+  - `MainPage.tsx`: 메인 랜딩 페이지
+  - `DashBoardPage.tsx`: 사용자 대시보드 페이지
+  - `KakaoCallback.tsx`: 카카오 로그인 OAuth 콜백 처리 페이지
 
 #### `store/` 🏪
 - **역할**: Zustand 같은 상태 관리 라이브러리를 사용하여 전역 상태를 관리합니다.
@@ -177,5 +202,5 @@ Searchive-frontend/
 
 프로젝트에 대한 문의사항이나 피드백은 아래로 연락주세요:
 
--   **Email**: your-email@example.com
--   **GitHub Issues**: [Issues 페이지](https://github.com/your-username/Searchive-frontend/issues)
+-   **GitHub**: [@Chaehyunli](https://github.com/Chaehyunli)
+-   **GitHub Issues**: [Issues 페이지](https://github.com/Chaehyunli/Searchive-frontend/issues)
