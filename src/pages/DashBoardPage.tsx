@@ -1,15 +1,17 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuthStore } from "../store/authStore"
 import Header from "../components/layout/Header"
 import FeatureCards from "../components/FeatureCards"
 import DocumentList from "../components/DocumentList"
+import DocumentUploadModal from "../components/DocumentUploadModal"
 
 export default function DashboardPage() {
   const { isLoggedIn } = useAuthStore()
   const navigate = useNavigate()
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false)
 
   // 로그인하지 않은 경우 메인 페이지로 리다이렉트
   useEffect(() => {
@@ -17,6 +19,10 @@ export default function DashboardPage() {
       navigate("/")
     }
   }, [isLoggedIn, navigate])
+
+  const handleUploadClick = () => {
+    setIsUploadModalOpen(true)
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -33,7 +39,7 @@ export default function DashboardPage() {
 
         {/* Feature Cards - 가운데 상단 배치 */}
         <div className="w-full py-8 mb-12 px-4 sm:px-6">
-          <FeatureCards />
+          <FeatureCards onUploadClick={handleUploadClick} />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,6 +52,9 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
+
+      {/* 문서 업로드 모달 */}
+      <DocumentUploadModal open={isUploadModalOpen} onOpenChange={setIsUploadModalOpen} />
     </div>
   )
 }

@@ -8,9 +8,10 @@ interface HeroSectionProps {
   onGetStarted: () => void
   isLoggedIn?: boolean
   onFeatureClick: () => void
+  onUploadClick?: () => void
 }
 
-export default function HeroSection({ onGetStarted, isLoggedIn, onFeatureClick }: HeroSectionProps) {
+export default function HeroSection({ onGetStarted, isLoggedIn, onFeatureClick, onUploadClick }: HeroSectionProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 pb-16">
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -71,7 +72,7 @@ export default function HeroSection({ onGetStarted, isLoggedIn, onFeatureClick }
         </div>
 
         <div className="mt-16 sm:mt-20 px-4 sm:px-6">
-          <FeatureCards onCardClick={onFeatureClick} />
+          <FeatureCards onCardClick={onFeatureClick} onUploadClick={onUploadClick} />
         </div>
       </div>
     </section>

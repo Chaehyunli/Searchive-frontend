@@ -8,13 +8,13 @@ import apiClient from './client';
 export const uploadDocument = async (file: File) => {
   const formData = new FormData();
   formData.append('file', file);
-  const response = await apiClient.post('/documents/upload', formData, {
+  const response = await apiClient.post('/api/v1/documents/upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
   return response.data;
 };
 
 export const getDocuments = async () => {
-  const response = await apiClient.get('/documents');
+  const response = await apiClient.get('/api/v1//documents');
   return response.data;
 };
