@@ -5,6 +5,30 @@ export * from './auth.api';
 // 기존 API 함수들 (추후 도메인별로 분리 예정)
 import apiClient from './client';
 
+// 타입 정의
+export interface Tag {
+  tag_id: number;
+  name: string;
+}
+
+export interface Document {
+  document_id: number;
+  original_filename: string;
+  file_type: string;
+  file_size_kb: number;
+  uploaded_at: string;
+  updated_at: string;
+  tags: Tag[];
+}
+
+export interface PaginatedResponse {
+  items: Document[];
+  total: number;
+  page: number;
+  page_size: number;
+  total_pages: number;
+}
+
 export const uploadDocument = async (file: File) => {
   const formData = new FormData();
   formData.append('file', file);
@@ -15,6 +39,19 @@ export const uploadDocument = async (file: File) => {
 };
 
 export const getDocuments = async () => {
-  const response = await apiClient.get('/api/v1//documents');
+  const response = await apiClient.get('/api/v1/documents');
+  return response.data;
+};
+
+export const getDocumentsPaginated = async (
+  page: number = 1,
+  pageSize: number = 10
+): Promise<PaginatedResponse> => {
+  const response = await apiClient.get('/api/v1/documents/paginated', {
+    params: {
+      page,
+      page_size: pageSize,
+    },
+  });
   return response.data;
 };
