@@ -7,7 +7,7 @@ interface FeatureCardsProps {
 
 export default function FeatureCards({ onCardClick, onUploadClick }: FeatureCardsProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full max-w-5xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 w-full">
       <div
         style={{ padding: '1rem' }}
         className="rounded-2xl bg-white border border-gray-200/60 hover:border-blue-400/40 hover:shadow-lg transition-all cursor-pointer"

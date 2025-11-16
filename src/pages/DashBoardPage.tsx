@@ -29,8 +29,8 @@ export default function DashboardPage() {
       <Header />
 
       {/* 메인 콘텐츠 */}
-      <div className="pt-20 sm:pt-24 py-8 sm:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="pt-20 sm:pt-24 py-8 sm:py-12 w-full">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="mb-10 sm:mb-12 text-center">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">대시보드</h1>
             <p className="text-sm sm:text-base text-gray-500">문서를 업로드하고 AI와 대화를 시작하세요</p>
@@ -38,16 +38,16 @@ export default function DashboardPage() {
         </div>
 
         {/* Feature Cards - 가운데 상단 배치 */}
-        <div className="w-full py-8 mb-12 px-4 sm:px-6">
+        <div className="w-full py-8 mb-12 px-4 sm:px-6 lg:px-8">
           <FeatureCards onUploadClick={handleUploadClick} />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           {/* 구분선 */}
           <div className="w-full border-t border-gray-200 my-12"></div>
 
           {/* 업로드된 문서 목록 영역 */}
-          <div className="w-full px-4 sm:px-8 py-8 mt-12">
+          <div className="w-full py-8 mt-12">
             <DocumentList />
           </div>
         </div>
