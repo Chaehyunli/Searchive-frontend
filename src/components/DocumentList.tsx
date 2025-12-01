@@ -117,7 +117,7 @@ export default function DocumentList() {
             key={doc.document_id}
             className="p-4 sm:p-5 rounded-xl bg-white border border-gray-200/60 hover:border-blue-400/40 hover:shadow-md transition-all group"
           >
-            <div className="flex items-start justify-between">
+            <div className="flex items-start justify-between gap-6">
               <div className="flex items-start gap-4 flex-1 min-w-0">
                 <div className="w-10 h-10 rounded-lg bg-blue-400/10 flex items-center justify-center flex-shrink-0">
                   <FileText className="w-5 h-5 text-blue-400" />
@@ -145,6 +145,12 @@ export default function DocumentList() {
                   )}
                 </div>
               </div>
+              {doc.summary && (
+                <div className="w-[560px] flex-shrink-0 pl-4 border-l border-gray-200">
+                  <h4 className="text-xs font-semibold text-gray-500 mb-1.5">요약</h4>
+                  <p className="text-sm text-gray-700 leading-relaxed">{doc.summary}</p>
+                </div>
+              )}
             </div>
           </div>
         ))}

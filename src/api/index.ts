@@ -18,6 +18,7 @@ export interface Document {
   file_size_kb: number;
   uploaded_at: string;
   updated_at: string;
+  summary?: string;
   tags: Tag[];
 }
 
